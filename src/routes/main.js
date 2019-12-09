@@ -1,10 +1,10 @@
 import React from "react";
-import {Layout, Spin} from "antd";
+import {Layout} from "antd";
 import {Switch, Route} from "react-router-dom";
 import {getMovies, isLoading} from "../actions/moviesAction";
 import {connect} from "react-redux";
 
-import {MainPageContainer, MovieContainer} from "../containers";
+import {MainPageContainer, MovieContainer, ScheduleContainer} from "../containers";
 
 const {Content} = Layout;
 
@@ -15,21 +15,16 @@ export class Main extends React.Component{
         this.props.getMovies();
     }
 
-    render(){
-        const {isLoading} = this.props;
-
-        return(
+    render() {
+        return (
             <Content style={{padding: '0 50px'}}>
-                {isLoading
-                ? <Spin tip="Loading..." style={{marginTop: '24px'}}/>
-                :   <Switch>
+                <Switch>
                     <Route path={"/"} exact component={MainPageContainer}/>
-                    <Route path={"/movie/:id"} component={MovieContainer} />
-                </Switch>}
-
+                    <Route path={"/movie/:id"} component={MovieContainer}/>
+                    <Route path={"/schedule"} component={ScheduleContainer}/>
+                </Switch>
             </Content>
         )
-
     }
 };
 
@@ -37,8 +32,4 @@ const mapDispatchToProps = {
     getMovies
 };
 
-const mapStateToProps = (state) => ({
-  isLoading: state.loading.isLoading
-});
-
-export const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
+export const MainContainer = connect(null, mapDispatchToProps)(Main);

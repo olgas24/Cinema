@@ -1,5 +1,5 @@
 import React from "react";
-import {IS_LOADING, LOADING_FAIL, SET_MOVIES} from "../constants";
+import {IS_LOADING, LOADING_FAIL, SET_MOVIES, SET_SESSIONS} from "../constants";
 
 export const initialValues = {
     isLoading: false
@@ -14,6 +14,7 @@ export const loading = (state = initialValues, action) => {
             };
         case  SET_MOVIES:
         case LOADING_FAIL:
+        case SET_SESSIONS:
             return{
                 ...state,
                 isLoading: false

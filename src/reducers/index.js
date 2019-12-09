@@ -1,9 +1,9 @@
 import React from "react";
 import {combineReducers} from "redux";
 import {loading} from "./loading";
-import {movies} from "./movies";
+import {data} from "./data";
 
 export const rootReducer = combineReducers({
     loading: loading,
-    data: movies
+    data: data
 });
