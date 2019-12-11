@@ -15,6 +15,7 @@ export class BuyTicket extends React.Component{
     }
 
     render() {
-        return ReactDom.createPortal(<ModalContent sessionId={this.props.sessionId}/>, this.root)
+        const {handleCloseModal, session} = this.props;
+        return ReactDom.createPortal(<ModalContent session={session} handleCloseModal={handleCloseModal}/>, this.root)
     }
 };

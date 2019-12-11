@@ -27,7 +27,7 @@ export class Schedule extends React.Component {
     };
 
     render() {
-        const {isLoading} = this.props;
+        const {isLoading, rooms} = this.props;
 
         if(isLoading){
             return (<Spin tip="Loading..." style={{marginTop: '24px'}}/>)
@@ -38,7 +38,7 @@ export class Schedule extends React.Component {
                     this.getSessions().map((item, i) => (
                         <div className="date-block" key={i}>
                             <h1>{new Date(item[0].date).toLocaleString("ru", dateOptions)}</h1>
-                            <SessionsBlock moviesOnDate={item}/>
+                            <SessionsBlock moviesOnDate={item} rooms={rooms}/>
                         </div>
                     ))
                 }

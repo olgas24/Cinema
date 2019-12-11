@@ -2,10 +2,12 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 
 import {MovieDetails} from "../components/MovieDetails"
+import {BuyTicket} from "../components";
 
 class Movie extends React.Component{
     state = {
-        movie: {}
+        movie: {},
+        showModal: false
     };
 
     componentDidMount() {
@@ -24,11 +26,17 @@ class Movie extends React.Component{
       }
     };
 
+    handleModalWindow = () => {
+        this.setState({showModal: true});
+    };
+
     render(){
         console.log("this.state.movie", this.state.movie);
-        const {movie} = this.state;
+        const {movie, showModal} = this.state;
+        const {session} = this.props;
 
         return (
+            <React.Fragment>
             <div className="movie-page clearfix">
 
                 <h1>{movie.title}</h1>
@@ -68,12 +76,14 @@ class Movie extends React.Component{
                         <div>
                             <h3>Трейлер</h3>
                             <iframe src={movie.trailer}></iframe>
-                            <button>Купить билет</button>
+                            <button onClick={this.handleModalWindow}>Купить билет</button>
                         </div>
 
                     </div>
                 </div>
             </div>
+                {showModal && <BuyTicket session={session}/>}
+            </React.Fragment>
         )
     }
 };
@@ -81,5 +91,6 @@ class Movie extends React.Component{
 const mapStateToProps = (state) => ({
     movies: state.data.movies
 });
+
 
 export const MovieContainer = connect(mapStateToProps)(Movie);

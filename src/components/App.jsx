@@ -24,7 +24,7 @@ export class App extends React.Component {
           <Layout>
             <HeaderComponent collapsed={this.state.collapsed} toggle={this.toggle}/>
             <MainContainer/>
-            <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
+            <Footer style={{textAlign: 'center'}}>Classic Cinema. ©2018 Created by ME.</Footer>
           </Layout>
         </Layout>
     );

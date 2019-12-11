@@ -2,16 +2,10 @@ import React, {useState} from "react";
 import {connect} from "react-redux";
 import {MovieList} from "../components/MovieLis";
 import {Filter} from "../components";
-import {Spin} from "antd";
 
-export const MainPage = ({movies, genres, isLoading}) => {
+export const MainPage = ({movies, genres}) => {
     console.log(movies);
     const [filteredMovies, setFilteredMovies] = useState([]);
-
-    if(isLoading){
-        {/*{isLoading*/}
-        return (<Spin tip="Loading..." style={{marginTop: '24px'}}/>)
-    }
 
     return (
         <React.Fragment>
@@ -30,8 +24,7 @@ export const MainPage = ({movies, genres, isLoading}) => {
 
 const mapStateToProps = (state) => ({
     movies: state.data.movies,
-    genres: state.data.genres,
-    isLoading: state.loading.isLoading
+    genres: state.data.genres
 });
 
 export const MainPageContainer = connect(mapStateToProps)(MainPage);
